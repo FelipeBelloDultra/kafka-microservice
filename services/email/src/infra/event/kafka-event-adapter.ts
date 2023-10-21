@@ -34,7 +34,7 @@ export class KafkaEventAdapter implements EventProvider {
 
     await Promise.all(
       Object.keys(topicsActions).map((topic) => {
-        return consumer.subscribe({ topic });
+        return consumer.subscribe({ topic, fromBeginning: true });
       })
     );
 

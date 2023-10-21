@@ -1,21 +1,13 @@
 version: "3.8"
 
 services:
-  api-account:
-    container_name: api-account
-    build: ./api-account
+  app:
+    container_name: app
+    build: .
     volumes:
-      - ./api-account:/home/node/app
+      - .:/home/node/app
     ports:
       - 3000:3000
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-
-  api-email:
-    container_name: api-email
-    build: ./api-email
-    volumes:
-      - ./api-email:/home/node/app
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
