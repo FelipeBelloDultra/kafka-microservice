@@ -4,7 +4,7 @@ import { EventProvider } from "~/application/providers/event/event-provider";
 
 import { env } from "~/config/env";
 
-export class KafkaEvent implements EventProvider {
+export class KafkaEventAdapter implements EventProvider {
   private readonly kafkaInstance: Kafka;
 
   constructor() {

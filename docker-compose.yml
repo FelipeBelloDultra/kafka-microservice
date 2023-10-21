@@ -5,7 +5,7 @@ services:
     container_name: api-account
     build: ./api-account
     volumes:
-      - .:/home/node/app
+      - ./api-account:/home/node/app
     ports:
       - 3000:3000
     extra_hosts:
@@ -15,7 +15,7 @@ services:
     container_name: api-email
     build: ./api-email
     volumes:
-      - .:/home/node/app
+      - ./api-email:/home/node/app
     extra_hosts:
       - "host.docker.internal:host-gateway"
 

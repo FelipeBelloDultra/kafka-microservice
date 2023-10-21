@@ -3,6 +3,7 @@ import { EventProvider } from "../providers/event/event-provider";
 import { AccountRepository } from "../repository/account-repository";
 import { EmailAlreadyUsed } from "./errors/email-already-used";
 import { Account } from "~/domain/entity/account";
+import { RepositoryFactory } from "../factory/repository-factory";
 
 type Input = {
   name: string;
@@ -11,10 +12,14 @@ type Input = {
 };
 
 export class CreateAccount implements UseCase<Input> {
+  private readonly accountRepository: AccountRepository;
+
   constructor(
-    private readonly accountRepository: AccountRepository,
+    repositoryFactory: RepositoryFactory,
     private readonly eventProvider: EventProvider
-  ) {}
+  ) {
+    this.accountRepository = repositoryFactory.createAccountRepository();
+  }
 
   public async execute(data: Input): Promise<void> {
     const existingAccountEmail = await this.accountRepository.findByEmail(
